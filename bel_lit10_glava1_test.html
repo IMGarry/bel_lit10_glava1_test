@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="be">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тэст. Беларуская літаратура, 10 клас. Глава 1: Даўняя літаратура (XI—XVIII стагоддзі)</title>
+<style>
+  :root {
+    --accent:#8e2430;
+    --accent-dark:#631823;
+    --accent-light:#f6e4e6;
+    --bg:#faf6f2;
+    --card:#ffffff;
+    --text:#2b2320;
+    --muted:#7a6e68;
+    --correct:#2e7d32;
+    --wrong:#b3261e;
+    --radius:14px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; font-family: "Georgia", "Times New Roman", serif;
+    background: var(--bg); color: var(--text); line-height:1.5;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px 60px; }
+  header.top {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color:#fff; padding: 28px 16px 22px; text-align:center;
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+  }
+  header.top h1 { margin:0 0 6px; font-size:1.5rem; }
+  header.top p { margin:0; opacity:.9; font-size:.95rem; }
+  nav.sections {
+    display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+    margin: 18px 0 22px;
+  }
+  nav.sections button {
+    font-family: inherit; font-size:.8rem; border:1px solid var(--accent);
+    background:#fff; color:var(--accent-dark); border-radius: 999px;
+    padding:6px 12px; cursor:pointer;
+  }
+  nav.sections button:hover { background: var(--accent-light); }
+  .toolbar {
+    position: sticky; top:0; z-index:50; background: var(--bg);
+    padding: 12px 0; display:flex; gap:10px; flex-wrap:wrap;
+    align-items:center; justify-content:center;
+    border-bottom: 2px solid var(--accent-light);
+  }
+  .toolbar button {
+    font-family: inherit; font-size: .95rem; padding:10px 18px;
+    border-radius: 999px; border:none; cursor:pointer; font-weight:600;
+  }
+  .btn-check { background: var(--accent); color:#fff; }
+  .btn-reset { background:#fff; color: var(--accent-dark); border:1px solid var(--accent) !important; }
+  .btn-key { background:#fff; color: var(--muted); border:1px solid #ccc !important; }
+  #score-box {
+    font-weight:700; font-size:1rem; color: var(--accent-dark);
+    background:#fff; padding:8px 16px; border-radius:999px;
+    border:1px solid var(--accent-light);
+  }
+  section.block {
+    background: var(--card); border-radius: var(--radius);
+    padding: 20px 22px; margin: 22px 0; box-shadow: 0 1px 6px rgba(0,0,0,.06);
+  }
+  section.block h2 {
+    color: var(--accent-dark); border-bottom: 2px solid var(--accent-light);
+    padding-bottom:8px; margin-top:0; font-size:1.2rem;
+  }
+  .q { margin: 20px 0; padding-top:14px; border-top: 1px dashed #e3d9d5; }
+  .q:first-of-type { border-top:none; padding-top:0; }
+  .q > .qtext { font-weight:600; margin-bottom:10px; }
+  .options label {
+    display:block; background:#fbf8f6; border:1px solid #eadfdb;
+    border-radius:10px; padding:9px 12px; margin:6px 0; cursor:pointer;
+    transition: background .15s;
+  }
+  .options label:hover { background: var(--accent-light); }
+  .options input { margin-right:8px; }
+  .opt-correct { background:#e3f4e3 !important; border-color: var(--correct) !important; }
+  .opt-wrong { background:#fbe4e2 !important; border-color: var(--wrong) !important; }
+  .feedback {
+    display:none; margin-top:10px; padding:10px 12px; border-radius:10px;
+    background: #fff8ec; border-left:4px solid #d9a441; font-size:.92rem;
+  }
+  .feedback.show { display:block; }
+  .feedback.correct { border-left-color: var(--correct); background:#eef8ee; }
+  .feedback.wrong { border-left-color: var(--wrong); background:#fdecea; }
+  .order-list, .match-list { list-style:none; padding:0; margin:0; }
+  .order-list li, .match-row {
+    display:flex; align-items:center; gap:10px; background:#fbf8f6;
+    border:1px solid #eadfdb; border-radius:10px; padding:8px 12px; margin:6px 0;
+  }
+  .order-list select, .match-row select {
+    font-family:inherit; font-size:.9rem; padding:5px 8px; border-radius:8px;
+    border:1px solid #ccc; margin-left:auto;
+  }
+  .ord-correct, .m-correct { background:#e3f4e3 !important; border-color: var(--correct) !important; }
+  .ord-wrong, .m-wrong { background:#fbe4e2 !important; border-color: var(--wrong) !important; }
+  .match-row .left { font-weight:600; min-width:46%; }
+  #answer-key {
+    display:none; background:#fffaf0; border:1px solid #e6d8b8; border-radius: var(--radius);
+    padding:18px 22px; margin:22px 0;
+  }
+  #answer-key.show { display:block; }
+  #answer-key h3 { margin-top:0; color:var(--accent-dark); }
+  #answer-key ol { padding-left:20px; }
+  #answer-key li { margin-bottom:8px; }
+  footer { text-align:center; color:var(--muted); font-size:.85rem; margin-top:30px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>📖 Беларуская літаратура. 10 клас</h1>
+  <p>Глава 1. Даўняя літаратура (XI—XVIII стагоддзі) — тэст для самаправеркі</p>
+</header>
+
+<div class="wrap">
+
+  <nav class="sections" id="section-nav"></nav>
+
+  <div class="toolbar">
+    <button class="btn-check" onclick="checkAll()">✅ Праверыць</button>
+    <button class="btn-reset" onclick="resetAll()">🔄 Пачаць нанова</button>
+    <button class="btn-key" onclick="toggleKey()">🔑 Паказаць/схаваць адказы</button>
+    <span id="score-box">Адказана: 0</span>
+  </div>
+
+  <div id="mc-container"></div>
+
+  <section class="block" id="sec-order">
+    <h2>🔢 Заданні на паслядоўнасць</h2>
+    <div id="order-container"></div>
+  </section>
+
+  <section class="block" id="sec-match">
+    <h2>🔗 Заданні на супастаўленне</h2>
+    <div id="match-container"></div>
+  </section>
+
+  <div id="answer-key"></div>
+
+  <footer>Тэст складзены па матэрыялах главы 1 падручніка «Беларуская літаратура. 10 клас» (Бязлепкіна і інш., 2020).</footer>
+</div>
+
+<script>
+/* ================== ДАДЗЕНЫЯ ================== */
+
+const MC_SECTIONS = [
+{
+  title: "1. Пачатак пісьменнасці і кніжнасці",
+  questions: [
+    { q:"Якія браты-асветнікі стварылі славянскую азбуку, на аснове якой узнікла кірыліца?",
+      opts:["Кірыл і Мяфодзій","Кірыл Тураўскі і Клімент Смаляціч","Скарына і Будны","Ефрасіння і Кірыл"],
+      correct:0, exp:"Славянскую азбуку стварылі браты Кірыл і Мяфодзій, на яе аснове пазней узнікла кірыліца." },
+    { q:"На якім матэрыяле пісаліся найстаражытнейшыя рукапісныя кнігі на беларускіх землях?",
+      opts:["На бяросце","На пергаменце (спецыяльна апрацаванай скуры)","На паперы","На гліняных таблічках"],
+      correct:1, exp:"Найстаражытнейшыя кнігі і Евангеллі пісаліся на пергаменце — спецыяльна вырабленай скуры жывёл." },
+    { q:"Як называліся майстэрні пры манастырах, дзе перапісвалі кнігі?",
+      opts:["Друкарні","Скрыпторыі","Кангрэгацыі","Канцылярыі"],
+      correct:1, exp:"Кнігі перапісвалі ў скрыпторыях — спецыяльных майстэрнях пры манастырах." },
+    { q:"Які жанр старажытнай літаратуры апісваў гістарычныя падзеі паслядоўна, па гадах?",
+      opts:["Жыціе","Хаджэнне","Летапіс","Пропаведзь"],
+      correct:2, exp:"Летапіс — жанр, у якім падзеі апісваліся ў храналагічным парадку, па гадах." }
+  ]
+},
+{
+  title: "2. Кірыл Тураўскі",
+  questions: [
+    { q:"Прыблізна колькі твораў, паводле даследчыкаў, напісаў Кірыл Тураўскі?",
+      opts:["каля 10","каля 30","каля 70","звыш 200"],
+      correct:2, exp:"Спадчына Кірыла Тураўскага налічвае каля 70 твораў — словы, малітвы, каноны." },
+    { q:"Якія жанры пераважаюць у творчасці Кірыла Тураўскага?",
+      opts:["Раманы і аповесці","Словы, малітвы і каноны","Байкі і прытчы","Летапісы і хронікі"],
+      correct:1, exp:"Кірыл Тураўскі пісаў словы (пропаведзі), малітвы і каноны." },
+    { q:"З якім вядомым помнікам старажытнай усходнеславянскай літаратуры некаторыя даследчыкі спрабуюць звязаць імя Кірыла Тураўскага як магчымага аўтара?",
+      opts:["«Аповесць мінулых гадоў»","«Слова пра паход Ігараў»","«Жыціе Еўфрасінні Полацкай»","«Аповесць пра Баву»"],
+      correct:1, exp:"Існуе гіпотэза, якая звязвае імя Кірыла Тураўскага з магчымым аўтарствам «Слова пра паход Ігараў»." },
+    { q:"Якая рыса творчасці найбольш праславіла Кірыла Тураўскага як прапаведніка?",
+      opts:["Красамоўства (яго нават параўноўвалі з Іаанам Златавустам)","Веданне матэматыкі","Уменне маляваць мініяцюры","Валоданне некалькімі рамёствамі"],
+      correct:0, exp:"За высокае красамоўства Кірыла Тураўскага параўноўвалі з візантыйскім прапаведнікам Іаанам Златавустым." }
+  ]
+},
+{
+  title: "3. Адраджэнне: агульная характарыстыка",
+  questions: [
+    { q:"У якім стагоддзі на беларускіх землях працякала эпоха Адраджэння (Рэнесансу)?",
+      opts:["XI стагоддзе","XIV стагоддзе","XVI стагоддзе","XIX стагоддзе"],
+      correct:2, exp:"Эпоха Адраджэння на Беларусі прыпадае на XVI стагоддзе." },
+    { q:"Які найважнейшы светапоглядны пераход адбыўся ў эпоху Адраджэння?",
+      opts:["Ад гуманізму да тэацэнтрызму","Ад тэацэнтрызму да гуманізму","Ад класіцызму да барока","Ад сентыменталізму да рэалізму"],
+      correct:1, exp:"Адраджэнне азначала пераход ад тэацэнтрызму (Бог у цэнтры) да гуманізму (чалавек у цэнтры)." },
+    { q:"Як часта называюць перыяд беларускага Адраджэння з-за яго культурнага росквіту?",
+      opts:["«Цёмны век»","«Залаты век»","«Век жалеза»","«Век маўчання»"],
+      correct:1, exp:"Беларускае Адраджэнне называюць «залатым векам» з-за росквіту культуры, асветы і кнігадрукавання." },
+    { q:"Якое права, што пашырылася ў беларускіх гарадах у гэты перыяд, спрыяла развіццю рамяства і гандлю?",
+      opts:["Магдэбургскае права","Рымскае права","Канонічнае права","Земскае права"],
+      correct:0, exp:"Магдэбургскае права давала гарадам самакіраванне і спрыяла развіццю рамяства, гандлю і культуры." }
+  ]
+},
+{
+  title: "4. Францыск Скарына",
+  questions: [
+    { q:"У якім горадзе Францыск Скарына выдаў сваю першую друкаваную кнігу — Біблію?",
+      opts:["Вільня","Полацк","Прага","Кракаў"],
+      correct:2, exp:"Скарына пачаў кнігавыдавецкую справу ў Празе, дзе выдаў Біблію ў 1517—1519 гадах." },
+    { q:"У якія гады Скарына выдаваў пражскую Біблію?",
+      opts:["1517—1519","1522—1525","1490—1495","1564—1570"],
+      correct:0, exp:"Пражская Біблія выдавалася Скарынам у 1517—1519 гадах." },
+    { q:"Колькі біблейскіх кніг увайшло ў Біблію Скарыны?",
+      opts:["7","15","23","40"],
+      correct:2, exp:"У Біблію Скарыны ўвайшло 23 кнігі Старога Запавета, перакладзеныя і выдадзеныя ім." },
+    { q:"Як называецца першая кніга, выдадзеная Скарынам ужо ў Вільні (1522)?",
+      opts:["«Апостал»","«Малая падарожная кніжка»","«Псалтыр»","«Катэхізіс»"],
+      correct:1, exp:"«Малая падарожная кніжка» (1522) — першае віленскае выданне Скарыны." },
+    { q:"Якая кніга з'яўляецца апошнім вядомым выданнем Скарыны (1525)?",
+      opts:["«Апостал»","«Кніга Іова»","«Прытчы Саламонавы»","«Псалтыр рыфматворная»"],
+      correct:0, exp:"«Апостал» (1525) — апошняе вядомае выданне Скарыны." },
+    { q:"Хто пазней скарыстаўся шрыфтамі і традыцыямі Скарынавай друкарні, каб пачаць кнігадрукаванне ў Маскве (1564)?",
+      opts:["Іван Фёдараў і Пётр Мсціславец","Сымон Будны і Васіль Цяпінскі","Мікалай Радзівіл Чорны","Сімяон Полацкі"],
+      correct:0, exp:"Іван Фёдараў і Пётр Мсціславец скарысталіся спадчынай Скарыны, пачынаючы кнігадрукаванне ў Маскве ў 1564 годзе." },
+    { q:"Прыблізна колькі прадмоў і пасляслоўяў напісаў Скарына да сваіх кніг?",
+      opts:["каля 5 прадмоў і 3 пасляслоўі","каля 50 прадмоў і 62 пасляслоўі","роўна 100 прадмоў","ніводнай — толькі тэксты Бібліі"],
+      correct:1, exp:"Скарына напісаў каля 50 прадмоў і 62 пасляслоўі, у якіх тлумачыў, каментаваў і рабіў глосы да біблейскіх тэкстаў." },
+    { q:"Колькі «вольных навук» (грамат., лагічныка, рыторыка, музыка, арыфметыка, геаметрыя, астраномія) згадвае Скарына ў сваіх прадмовах як аснову адукацыі?",
+      opts:["Тры","Пяць","Сем","Дзевяць"],
+      correct:2, exp:"Скарына апісвае сістэму сямі вольных навук: граматыку, лагічныку (дыялектыку), рыторыку, музыку, арыфметыку, геаметрыю і астраномію." },
+    { q:"У якой кнізе Скарыны (1517) змешчаны яго першы верш, які лічыцца пачаткам беларускай паэзіі?",
+      opts:["У «Іове»","У «Псалтыры»","У «Апостале»","У «Малой падарожнай кніжцы»"],
+      correct:0, exp:"Першы верш Скарыны змешчаны ў кнізе «Іоў» (1517) і лічыцца пачаткам беларускага вершаскладання." },
+    { q:"Якая сістэма вершавання выкарыстана ў паэзіі Скарыны?",
+      opts:["Танічная","Сілабічная","Сілаба-танічная","Вольны верш"],
+      correct:1, exp:"Скарына пісаў сілабічным вершам — з падлікам колькасці складоў у радку." },
+    { q:"Што такое глосы, якімі Скарына суправаджаў тэксты сваіх кніг?",
+      opts:["Малюнкі на палях","Тлумачэнні незразумелых слоў на палях старонкі","Подпісы выдаўца","Спіс друкарскіх памылак"],
+      correct:1, exp:"Глосы — кароткія тлумачэнні незразумелых слоў, якія Скарына змяшчаў на палях старонак." },
+    { q:"У гонар Скарыны з 1979 года названа малая планета. Пад якім яна нумарам?",
+      opts:["№101","№1917","№3283","№52"],
+      correct:2, exp:"З 1979 года ў гонар Скарыны названа малая планета №3283 «Скарына»." }
+  ]
+},
+{
+  title: "5. Сымон Будны",
+  questions: [
+    { q:"Прыблізныя гады жыцця Сымона Буднага?",
+      opts:["каля 1440—1500","каля 1530—1593","1600—1650","1680—1720"],
+      correct:1, exp:"Сымон Будны жыў прыблізна ў 1530—1593 гадах." },
+    { q:"У якім горадзе і годзе Сымон Будны выдаў свой «Катэхізіс»?",
+      opts:["Вільня, 1522","Нясвіж, 1562","Полацк, 1580","Прага, 1517"],
+      correct:1, exp:"«Катэхізіс» Сымона Буднага быў выдадзены ў Нясвіжы ў 1562 годзе." },
+    { q:"Для якой аўдыторыі, паводле подтытула, прызначаўся «Катэхізіс» Буднага?",
+      opts:["Толькі для святароў","Для простых людзей і дзяцей, у пытаннях і адказах","Для каралеўскага двара","Для навукоўцаў-багасловаў"],
+      correct:1, exp:"«Катэхізіс» быў адрасаваны «простым людзем» і дзецям — гэта дагматычна-багаслоўская праца, чытанка і падручнік адначасова." },
+    { q:"Прадстаўніком якога рэлігійна-грамадскага руху быў Сымон Будны?",
+      opts:["Контррэфармацыі","Рэфармацыі (пратэстанцтва)","Праваслаўя-традыцыяналізму","Унiяцтва"],
+      correct:1, exp:"Сымон Будны быў яркім беларускім дзеячам Рэфармацыі." },
+    { q:"Хто заснаваў пратэстанцкую друкарню ў Нясвіжы, дзе выйшла першая на тэрыторыі Беларусі кніга Буднага?",
+      opts:["Мікалай Радзівіл Чорны","Жыгімонт I","Васіль Цяпінскі","Мацвей Кавячынскі асабіста"],
+      correct:0, exp:"Друкарня ў Нясвіжы дзейнічала пры падтрымцы Мікалая Радзівіла Чорнага (друкарня належала пану Мацвею Кавячынскаму)." }
+  ]
+},
+{
+  title: "6. Васіль Цяпінскі",
+  questions: [
+    { q:"Якую галоўную працу здзейсніў Васіль Цяпінскі як перакладчык?",
+      opts:["Пераклад Псалтыра","Пераклад Евангелля (Новага Запавета) на беларускую мову","Пераклад Катэхізіса","Пераклад антычных аўтараў"],
+      correct:1, exp:"Васіль Цяпінскі пераклаў Евангелле на беларускую мову і выдаў яго са сваёй прадмовай і каментарамі." },
+    { q:"Якая асаблівасць адрознівае выданне Евангелля Цяпінскага?",
+      opts:["Тэкст надрукаваны толькі лацінкай","Паралельныя тэксты на царкоўнаславянскай і беларускай мовах","Кніга без ілюстрацый і без тэксту","Пераклад на польскую мову"],
+      correct:1, exp:"Цяпінскі змясціў побач царкоўнаславянскі тэкст і свой беларускі пераклад, што спрыяла лепшаму разуменню." },
+    { q:"Адкуль паходзіць прозвішча «Цяпінскі»?",
+      opts:["Ад назвы роднага горада Полацка","Ад назвы маёнтка Цяпіна каля Лепеля","Ад імя бацькі","Ад назвы царквы"],
+      correct:1, exp:"Васіль Амельяновіч атрымаў прозвішча Цяпінскі па назве радавога маёнтка Цяпіна каля Лепеля." },
+    { q:"Чыёй справы (традыцыі) Цяпінскага лічаць прадаўжальнікам?",
+      opts:["Кірыла Тураўскага","Францыска Скарыны","Сімяона Полацкага","Каятана Марашэўскага"],
+      correct:1, exp:"Васіля Цяпінскага называюць прадаўжальнікам традыцыі Скарыны ў кнігавыдавецкай справе." }
+  ]
+},
+{
+  title: "7. Тэорыя літаратуры: жанры Адраджэння",
+  questions: [
+    { q:"Што такое прадмова?",
+      opts:["Уступнае слова да кнігі з тлумачэннямі для чытача","Дадатак пасля твора","Спрэчка паміж двума аўтарамі","Табліца са зместам кнігі"],
+      correct:0, exp:"Прадмова — уступнае слова да кнігі, у якім выдавец, рэдактар ці аўтар паведамляе чытачу звесткі для лепшага разумення тэксту." },
+    { q:"Што такое пасляслоўе?",
+      opts:["Другая назва прадмовы","Змешчаны пасля твора дадатак з удакладненнем і каментарыямі","Верш у форме прадмета","Пераказ зместу твора"],
+      correct:1, exp:"Пасляслоўе — дадатак пасля твора, прысвечаны ўдакладненню, абмеркаванню і каментаванню асноўнага тэксту." },
+    { q:"Што такое палемічная публіцыстыка, якая ўзнікла ў выніку супрацьстаяння пратэстанцкай і традыцыйнай царквы?",
+      opts:["Летапісныя запісы падзей","Адкрытыя спрэчкі і перапіска паміж прадстаўнікамі розных канфесій (лісты, пасланні, памфлеты)","Пераклады антычных твораў","Байкі і прыпавесці"],
+      correct:1, exp:"Палемічная публіцыстыка — адкрытыя спрэчкі і публічная перапіска паміж прадстаўнікамі розных канфесій у выглядзе лістоў, пасланняў, памфлетаў, скаргаў." }
+  ]
+},
+{
+  title: "8. Літаратура эпохі барока: агульная характарыстыка",
+  questions: [
+    { q:"З якой мовы паходзіць слова «барока» і што яно азначае ў перакладзе?",
+      opts:["З лацінскай, «ясны, просты»","З італьянскай, «незвычайны, дзіўны»","З грэчаскай, «прыгожы»","З французскай, «вялікі»"],
+      correct:1, exp:"Слова «барока» — ад італьянскага «barocco», што ў перакладзе азначае «незвычайны, дзіўны»." },
+    { q:"Якія стагоддзі ахоплівае эпоха барока ў беларускай літаратуры?",
+      opts:["XI—XII","XIV—XV","XVII—XVIII","XIX—XX"],
+      correct:2, exp:"Беларускае барока — гэта XVII—XVIII стагоддзі." },
+    { q:"Якія рысы характэрныя для стылю барока?",
+      opts:["Прастата і лаканічнасць","Кантраснасць, шматзначнасць, дэкаратыўнасць","Строгая сіметрыя без аздобаў, як у антычнасці","Поўная адсутнасць рэлігійнай тэматыкі"],
+      correct:1, exp:"Барока адрознівалася ад стрыманага Адраджэння кантраснасцю, шматзначнасцю і пышнай дэкаратыўнасцю." },
+    { q:"Хто лічыцца першай на тэрыторыі Беларусі жанчынай-драматургам эпохі барока?",
+      opts:["Ефрасіння Полацкая","Францішка Уршуля Радзівіл","Марыля Пляцер","Соф'я Слуцкая"],
+      correct:1, exp:"Францішка Уршуля Радзівіл — першая на тэрыторыі Беларусі жанчына-драматург, «нясвіжская Мельпамена»." }
+  ]
+},
+{
+  title: "9. «Прамова Мялешкі»",
+  questions: [
+    { q:"Якому жанру адпавядае «Прамова Мялешкі»?",
+      opts:["Летапіснае апавяданне","Сатырычная пародыя на сеймавую прамову","Лірычны верш","Жыційная аповесць"],
+      correct:1, exp:"«Прамова Мялешкі» — сатырычная пародыя на афіцыйны жанр сеймавай прамовы." },
+    { q:"Імя якой гістарычнай асобы аўтар выкарыстаў для стварэння твора?",
+      opts:["Івана Мялешкі, мазырскага падкаморыя","Льва Сапегі","Крыштафа Радзівіла","Жыгімонта Старога"],
+      correct:0, exp:"Аўтар выкарыстаў імя і біяграфічныя рысы Івана Мялешкі, мазырскага падкаморыя, хоць твор і з'явіўся пасля яго смерці (1622)." },
+    { q:"Якое кіраванне часоў твор супрацьпастаўляе адно другому?",
+      opts:["Часы Жыгімонта Старога і часы Жыгімонта III (Вазы)","Часы Скарыны і часы Полацкага","Часы Тураўскага і часы Буднага","Часы Цяпінскага і часы Марашэўскага"],
+      correct:0, exp:"Аўтар супастаўляе час Жыгімонта I Старога (лепшы, паводле твора) з часам Жыгімонта III Вазы." }
+  ]
+},
+{
+  title: "10. Сімяон Полацкі",
+  questions: [
+    { q:"Якое сапраўднае імя Сімяона Полацкага?",
+      opts:["Самуіл Пятроўскі-Сітняновіч","Іван Мялешка","Васіль Амельяновіч","Юрый Каятановіч"],
+      correct:0, exp:"Сапраўднае імя Сімяона Полацкага — Самуіл Пятроўскі-Сітняновіч (1629—1680)." },
+    { q:"У якім горадзе нарадзіўся Сімяон Полацкі?",
+      opts:["Тураў","Нясвіж","Полацк","Слонім"],
+      correct:2, exp:"Сімяон Полацкі нарадзіўся ў Полацку ў заможнай сям'і." },
+    { q:"У які горад пераехаў Сімяон Полацкі ў 1664 годзе на запрашэнне цара?",
+      opts:["Кіеў","Масква","Вільня","Прага"],
+      correct:1, exp:"У 1664 годзе Сімяон Полацкі пераехаў у Маскву па запрашэнні цара Аляксея Міхайлавіча." },
+    { q:"Што такое каліграмы, якімі славіцца творчасць Сімяона Полацкага?",
+      opts:["Багаслоўскія трактаты","Фігурныя вершы (у форме крыжа, сэрца, зоркі і інш.)","Гістарычныя летапісы","Пераклады з лаціны без рыфмы"],
+      correct:1, exp:"Каліграмы — графічныя, або фігурныя, вершы, форма якіх нагадвае пэўны прадмет (крыж, сэрца, зорку)." },
+    { q:"Як называецца яго зборнік перакладзеных на вершы псалмоў Давіда?",
+      opts:["«Псалтыр рыфматворная»","«Буквар»","«Вертаград шматкветны»","«Абед духоўны»"],
+      correct:0, exp:"«Псалтыр рыфматворная» — адзін з першых усходнеславянскіх паэтычных перакладаў Псалтыра." }
+  ]
+},
+{
+  title: "11. Беларускі тэатр",
+  questions: [
+    { q:"Як з XIII стагоддзя называлі народных вандроўных акцёраў-музыкантаў?",
+      opts:["Кобзары","Скамарохі","Мінестрэлі","Гусляры"],
+      correct:1, exp:"З XIII стагоддзя народных вандроўных акцёраў пачалі называць скамарохамі." },
+    { q:"Што такое інтэрмедыя?",
+      opts:["Невялікая камічная сцэнка, якая разыгрывалася паміж актамі асноўнай п'есы","Асноўная драма школьнага тэатра","Верш у форме прадмета","Спеўны твор пра народжанне Хрыста"],
+      correct:0, exp:"Інтэрмедыя — невялікая камічная сцэнка бытавога зместу паміж актамі асноўнай п'есы." },
+    { q:"Што такое батлейка?",
+      opts:["Школьны тэатр пры калегіі","Лялечны тэатр","Хор пры царкве","Жанр палемічнай публіцыстыкі"],
+      correct:1, exp:"Батлейка — лялечны тэатр, папулярны на Беларусі, асабліва звязаны са святкаваннем Раства Хрыстова." },
+    { q:"Які герой у інтэрмедыях звычайна паказваўся станоўчым, творцам зямных дабротаў?",
+      opts:["Селянін","Пан","Чорт","Жаўнер"],
+      correct:0, exp:"У інтэрмедыях селянін звычайна паказваўся станоўчым героем, творцам зямных дабротаў, які выклікаў сімпатыю гледачоў." }
+  ]
+},
+{
+  title: "12. Літаратура Асветніцтва",
+  questions: [
+    { q:"Якія храналагічныя межы эпохі Асветніцтва ў беларускай літаратуры?",
+      opts:["XI — XII стагоддзі","Другая палова XVIII — пачатак XIX стагоддзя","XVI стагоддзе","XVII стагоддзе"],
+      correct:1, exp:"Эпоха Асветніцтва ахоплівае другую палову XVIII — пачатак XIX стагоддзя." },
+    { q:"Якія два напрамкі былі асноўнымі літаратурнымі напрамкамі эпохі Асветніцтва?",
+      opts:["Класіцызм і сентыменталізм","Барока і рамантызм","Рэалізм і мадэрнізм","Гуманізм і сімвалізм"],
+      correct:0, exp:"Класіцызм (культ розуму) і сентыменталізм (культ пачуцця) — асноўныя напрамкі эпохі Асветніцтва." },
+    { q:"Што такое бурлеск?",
+      opts:["Разнавіднасць паэзіі класіцызму, калі «высокія» рэчы апісваюцца «нізкім» стылем","Драма пра рыцараў","Жанр пропаведзі","Каліграфічны верш"],
+      correct:0, exp:"Бурлеск — разнавіднасць паэзіі класіцызму, калі высокія рэчы апяваюцца нізкім стылем і наадварот." },
+    { q:"Хто аўтар значнай п'есы «Камедыя» (1787), напісанай паводле законаў класіцызму?",
+      opts:["Каятан Марашэўскі","Сімяон Полацкі","Іван Мялешка","Васіль Цяпінскі"],
+      correct:0, exp:"«Камедыя» (1787) — значны твор Забельскай дамініканскай калегіі, аўтарства Каятана Марашэўскага." },
+    { q:"Дзе знаходзіўся так званы «плывучы тэатр» Міхала Казіміра Агінскага?",
+      opts:["На канале Агінскага ў Слоніме, на баржах","У Нясвіжскім замку","На рацэ Дзвіне ў Полацку","У Віленскім універсітэце"],
+      correct:0, exp:"«Плывучы тэатр» дзейнічаў на баржах на канале Агінскага каля Слоніма." }
+  ]
+}
+];
+
+const ORDER_QUESTIONS = [
+  { title:"Размясціце дзеячаў беларускай кніжнасці і літаратуры ў храналагічным парадку іх дзейнасці (ад найранейшага да найпазнейшага):",
+    items:[
+      "Кірыл Тураўскі (XII стагоддзе)",
+      "Францыск Скарына (выданне Бібліі, 1517—1519)",
+      "Сымон Будны («Катэхізіс», 1562)",
+      "Васіль Цяпінскі (пераклад Евангелля, каля 1570)",
+      "Сімяон Полацкі (дзейнасць у Маскве, 1660—1670-я)",
+      "Каятан Марашэўскі («Камедыя», 1787)"
+    ] },
+  { title:"Размясціце выданні Францыска Скарыны ў храналагічным парадку:",
+    items:[
+      "Пачатак выдання Бібліі ў Празе (1517)",
+      "Завяршэнне пражскага выдання Бібліі (1519)",
+      "«Малая падарожная кніжка» ў Вільні (1522)",
+      "«Апостал» — апошняе вядомае выданне (1525)"
+    ] },
+  { title:"Размясціце эпохі гісторыі беларускай літаратуры XI—XVIII стагоддзяў у іх сапраўднай паслядоўнасці:",
+    items:[
+      "Сярэднявечча (XI—XV стст.)",
+      "Адраджэнне (XVI ст.)",
+      "Барока (XVII—XVIII стст.)",
+      "Асветніцтва (другая палова XVIII — пачатак XIX ст.)"
+    ] },
+  { title:"Размясціце этапы развіцця беларускага тэатра ў храналагічным парадку:",
+    items:[
+      "Скамарохі — народныя вандроўныя акцёры (з XIII ст.)",
+      "Узнікненне школьнага тэатра пры калегіях (пасля 1569 г.)",
+      "Развіццё інтэрмедыі як дадатку да школьнай драмы",
+      "Росквіт батлейкі — лялечнага тэатра (XVIII ст.)",
+      "Прыдворны тэатр і «Камедыя» Каятана Марашэўскага (1787)"
+    ] },
+  { title:"Размясціце падзеі, звязаныя з рэфармацыйным і перакладчыцкім рухам на Беларусі, у храналагічным парадку:",
+    items:[
+      "Заснаванне пратэстанцкай друкарні ў Нясвіжы Мікалаем Радзівілам Чорным",
+      "Выданне «Катэхізіса» Сымона Буднага (1562)",
+      "Пераклад і выданне Евангелля Васілём Цяпінскім (каля 1570)"
+    ] }
+];
+
+const MATCH_QUESTIONS = [
+  { title:"Суаднясіце асобу з яе творам ці справай:",
+    pairs:[
+      ["Кірыл Тураўскі","словы, малітвы і каноны"],
+      ["Францыск Скарына","пераклад і выданне Бібліі (Прага, 1517—1519)"],
+      ["Сымон Будны","«Катэхізіс» (Нясвіж, 1562)"],
+      ["Васіль Цяпінскі","пераклад Евангелля на беларускую мову"],
+      ["Сімяон Полацкі","каліграмы і «Псалтыр рыфматворная»"],
+      ["Каятан Марашэўскі","«Камедыя» (1787)"]
+    ] },
+  { title:"Суаднясіце тэрмін з яго азначэннем:",
+    pairs:[
+      ["Прадмова","уступнае слова да кнігі"],
+      ["Пасляслоўе","дадатак пасля твора з каментарыямі"],
+      ["Каліграма","фігурны верш у форме прадмета"],
+      ["Інтэрмедыя","камічная сцэнка паміж актамі п'есы"],
+      ["Батлейка","лялечны тэатр"],
+      ["Бурлеск","высокае апісанае нізкім стылем"]
+    ] },
+  { title:"Суаднясіце дату (перыяд) з падзеяй:",
+    pairs:[
+      ["1517—1519","выданне Бібліі Скарыны ў Празе"],
+      ["1522","«Малая падарожная кніжка» ў Вільні"],
+      ["1562","«Катэхізіс» Сымона Буднага ў Нясвіжы"],
+      ["каля 1570","пераклад Евангелля Васіля Цяпінскага"],
+      ["1787","«Камедыя» Каятана Марашэўскага"]
+    ] }
+];
+
+/* ================== ДАПАМОЖНЫЯ ФУНКЦЫІ ================== */
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+let totalQuestions = 0;
+
+function buildNav() {
+  const nav = document.getElementById("section-nav");
+  MC_SECTIONS.forEach((sec, idx) => {
+    const btn = document.createElement("button");
+    btn.textContent = sec.title.replace(/^\d+\.\s*/, "");
+    btn.onclick = () => document.getElementById("sec-mc-" + idx).scrollIntoView({behavior:"smooth", block:"start"});
+    nav.appendChild(btn);
+  });
+  const b1 = document.createElement("button");
+  b1.textContent = "Паслядоўнасці";
+  b1.onclick = () => document.getElementById("sec-order").scrollIntoView({behavior:"smooth"});
+  nav.appendChild(b1);
+  const b2 = document.createElement("button");
+  b2.textContent = "Супастаўленне";
+  b2.onclick = () => document.getElementById("sec-match").scrollIntoView({behavior:"smooth"});
+  nav.appendChild(b2);
+}
+
+function buildMC() {
+  const container = document.getElementById("mc-container");
+  container.innerHTML = "";
+  MC_SECTIONS.forEach((sec, sIdx) => {
+    const block = document.createElement("section");
+    block.className = "block";
+    block.id = "sec-mc-" + sIdx;
+    const h2 = document.createElement("h2");
+    h2.textContent = sec.title;
+    block.appendChild(h2);
+
+    const qOrder = shuffle(sec.questions.map((_, i) => i));
+    qOrder.forEach((qi, localIdx) => {
+      const qd = sec.questions[qi];
+      const qDiv = document.createElement("div");
+      qDiv.className = "q";
+      qDiv.dataset.type = "mc";
+      qDiv.dataset.section = sIdx;
+      qDiv.dataset.qindex = qi;
+
+      const qt = document.createElement("div");
+      qt.className = "qtext";
+      qt.textContent = (localIdx+1) + ". " + qd.q;
+      qDiv.appendChild(qt);
+
+      const optsDiv = document.createElement("div");
+      optsDiv.className = "options";
+      const optOrder = shuffle(qd.opts.map((_, i) => i));
+      const name = "mc-" + sIdx + "-" + qi;
+      optOrder.forEach(oi => {
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = name;
+        input.value = oi;
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(qd.opts[oi]));
+        optsDiv.appendChild(label);
+      });
+      qDiv.dataset.correct = qd.correct;
+      qDiv.appendChild(optsDiv);
+
+      const fb = document.createElement("div");
+      fb.className = "feedback";
+      fb.textContent = "💡 " + qd.exp;
+      qDiv.appendChild(fb);
+
+      block.appendChild(qDiv);
+      totalQuestions++;
+    });
+    container.appendChild(block);
+  });
+}
+
+function buildOrder() {
+  const container = document.getElementById("order-container");
+  container.innerHTML = "";
+  ORDER_QUESTIONS.forEach((oq, idx) => {
+    const wrap = document.createElement("div");
+    wrap.className = "q";
+    wrap.dataset.type = "order";
+    wrap.dataset.qindex = idx;
+
+    const qt = document.createElement("div");
+    qt.className = "qtext";
+    qt.textContent = (idx+1) + ". " + oq.title;
+    wrap.appendChild(qt);
+
+    const shuffledIdx = shuffle(oq.items.map((_, i) => i));
+    const list = document.createElement("ul");
+    list.className = "order-list";
+    shuffledIdx.forEach(itemIdx => {
+      const li = document.createElement("li");
+      li.dataset.correctPos = itemIdx;
+      const span = document.createElement("span");
+      span.textContent = oq.items[itemIdx];
+      li.appendChild(span);
+      const sel = document.createElement("select");
+      for (let n = 1; n <= oq.items.length; n++) {
+        const op = document.createElement("option");
+        op.value = n;
+        op.textContent = n;
+        sel.appendChild(op);
+      }
+      sel.value = "";
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "№?";
+      placeholder.selected = true;
+      placeholder.disabled = false;
+      sel.insertBefore(placeholder, sel.firstChild);
+      li.appendChild(sel);
+      list.appendChild(li);
+    });
+    wrap.appendChild(list);
+
+    const fb = document.createElement("div");
+    fb.className = "feedback";
+    fb.textContent = "💡 Правільная паслядоўнасць: " + oq.items.map((t,i)=> (i+1)+") "+t).join("; ");
+    wrap.appendChild(fb);
+
+    container.appendChild(wrap);
+    totalQuestions++;
+  });
+}
+
+function buildMatch() {
+  const container = document.getElementById("match-container");
+  container.innerHTML = "";
+  MATCH_QUESTIONS.forEach((mq, idx) => {
+    const wrap = document.createElement("div");
+    wrap.className = "q";
+    wrap.dataset.type = "match";
+    wrap.dataset.qindex = idx;
+
+    const qt = document.createElement("div");
+    qt.className = "qtext";
+    qt.textContent = (idx+1) + ". " + mq.title;
+    wrap.appendChild(qt);
+
+    const leftOrder = shuffle(mq.pairs.map((_, i) => i));
+    const rightOrder = shuffle(mq.pairs.map((_, i) => i));
+
+    const list = document.createElement("div");
+    list.className = "match-list";
+    leftOrder.forEach(li => {
+      const row = document.createElement("div");
+      row.className = "match-row";
+      row.dataset.correctRight = li;
+      const left = document.createElement("div");
+      left.className = "left";
+      left.textContent = mq.pairs[li][0];
+      row.appendChild(left);
+      const sel = document.createElement("select");
+      const ph = document.createElement("option");
+      ph.value = ""; ph.textContent = "— выберыце —"; ph.selected = true;
+      sel.appendChild(ph);
+      rightOrder.forEach(ri => {
+        const op = document.createElement("option");
+        op.value = ri;
+        op.textContent = mq.pairs[ri][1];
+        sel.appendChild(op);
+      });
+      row.appendChild(sel);
+      list.appendChild(row);
+    });
+    wrap.appendChild(list);
+
+    const fb = document.createElement("div");
+    fb.className = "feedback";
+    fb.textContent = "💡 Правільныя пары: " + mq.pairs.map(p => p[0]+" → "+p[1]).join("; ");
+    wrap.appendChild(fb);
+
+    container.appendChild(wrap);
+    totalQuestions++;
+  });
+}
+
+function checkAll() {
+  let correctCount = 0;
+  let answered = 0;
+
+  document.querySelectorAll('.q[data-type="mc"]').forEach(qDiv => {
+    const name = "mc-" + qDiv.dataset.section + "-" + qDiv.dataset.qindex;
+    const checked = qDiv.querySelector('input[name="'+name+'"]:checked');
+    const labels = qDiv.querySelectorAll(".options label");
+    const correctVal = qDiv.dataset.correct;
+    labels.forEach(l => l.classList.remove("opt-correct","opt-wrong"));
+    const fb = qDiv.querySelector(".feedback");
+    if (checked) {
+      answered++;
+      const chosenLabel = checked.closest("label");
+      if (checked.value === correctVal) {
+        chosenLabel.classList.add("opt-correct");
+        correctCount++;
+        fb.classList.add("show","correct"); fb.classList.remove("wrong");
+      } else {
+        chosenLabel.classList.add("opt-wrong");
+        const correctInput = qDiv.querySelector('input[value="'+correctVal+'"]');
+        if (correctInput) correctInput.closest("label").classList.add("opt-correct");
+        fb.classList.add("show","wrong"); fb.classList.remove("correct");
+      }
+    } else {
+      fb.classList.remove("show");
+    }
+  });
+
+  document.querySelectorAll('.q[data-type="order"]').forEach(qDiv => {
+    const items = qDiv.querySelectorAll(".order-list li");
+    let allFilled = true, allCorrect = true;
+    items.forEach(li => {
+      const sel = li.querySelector("select");
+      li.classList.remove("ord-correct","ord-wrong");
+      if (!sel.value) { allFilled = false; return; }
+      const chosenPos = parseInt(sel.value, 10) - 1;
+      const correctPos = parseInt(li.dataset.correctPos, 10);
+      if (chosenPos === correctPos) {
+        li.classList.add("ord-correct");
+      } else {
+        li.classList.add("ord-wrong");
+        allCorrect = false;
+      }
+    });
+    const fb = qDiv.querySelector(".feedback");
+    if (allFilled) {
+      answered++;
+      if (allCorrect) correctCount++;
+      fb.classList.add("show");
+    } else {
+      fb.classList.remove("show");
+    }
+  });
+
+  document.querySelectorAll('.q[data-type="match"]').forEach(qDiv => {
+    const rows = qDiv.querySelectorAll(".match-row");
+    let allFilled = true, allCorrect = true;
+    rows.forEach(row => {
+      const sel = row.querySelector("select");
+      row.classList.remove("m-correct","m-wrong");
+      if (!sel.value) { allFilled = false; return; }
+      if (sel.value === row.dataset.correctRight) {
+        row.classList.add("m-correct");
+      } else {
+        row.classList.add("m-wrong");
+        allCorrect = false;
+      }
+    });
+    const fb = qDiv.querySelector(".feedback");
+    if (allFilled) {
+      answered++;
+      if (allCorrect) correctCount++;
+      fb.classList.add("show");
+    } else {
+      fb.classList.remove("show");
+    }
+  });
+
+  document.getElementById("score-box").textContent =
+    "Адказана: " + answered + " / " + totalQuestions + " · Правільна: " + correctCount;
+
+  const firstUnanswered = document.querySelector('.feedback.show');
+}
+
+function resetAll() {
+  location.reload();
+}
+
+function toggleKey() {
+  const key = document.getElementById("answer-key");
+  if (!key.classList.contains("show")) {
+    let html = "<h3>🔑 Поўны ключ адказаў</h3><ol>";
+    MC_SECTIONS.forEach(sec => {
+      html += "<li><strong>" + sec.title + "</strong><ol type='a'>";
+      sec.questions.forEach(qd => {
+        html += "<li>" + qd.q + " — <b>" + qd.opts[qd.correct] + "</b><br><span style='color:#7a6e68;font-size:.88em;'>" + qd.exp + "</span></li>";
+      });
+      html += "</ol></li>";
+    });
+    html += "</ol><h3>Паслядоўнасці</h3><ol>";
+    ORDER_QUESTIONS.forEach(oq => {
+      html += "<li>" + oq.title + "<br><b>" + oq.items.map((t,i)=>(i+1)+") "+t).join("; ") + "</b></li>";
+    });
+    html += "</ol><h3>Супастаўленне</h3><ol>";
+    MATCH_QUESTIONS.forEach(mq => {
+      html += "<li>" + mq.title + "<br><b>" + mq.pairs.map(p=>p[0]+" → "+p[1]).join("; ") + "</b></li>";
+    });
+    html += "</ol>";
+    key.innerHTML = html;
+  }
+  key.classList.toggle("show");
+}
+
+buildNav();
+buildMC();
+buildOrder();
+buildMatch();
+</script>
+</body>
+</html>
